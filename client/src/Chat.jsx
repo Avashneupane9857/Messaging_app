@@ -28,9 +28,11 @@ function Chat({ socket, username, room }) {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
     });
+    return () => socket.off("receive_message");
   }, [socket]);
   return (
     <div className="chat-window">
+      <h1>{username}</h1>
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
